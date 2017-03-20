@@ -3,24 +3,31 @@
     You have {{ inbox.messages.length && inbox.messages.length || 'no' }} messages
   </div>
   <div ng-hide="!inbox.messages.length">
-    <input type="text" class="inbox__search" 
-      ng-model="inbox.search" placeholder="Search by 'from', e.g. TicketMaster">
-  </div>
+  <div class="input-field">
+          <i class="material-icons prefix">search</i>
+          <input placeholder="Search by 'from', e.g. TicketMaster" id="icon_prefix" type="text" class="validate" ng-model="inbox.search"><!-- 
+          <label for="icon_prefix">Search by 'from', e.g. TicketMaster</label> -->
+        </div>
+  <!-- <div class="row">
+  <i class="material-icons prefix">account_circle</i>
+    <input type="text" class="" 
+      ng-model="inbox.search" placeholder="">
+  </div> -->
   <ul class="inbox__list">
     <li ng-show="!inbox.messages.length">
       No messages! Try sending one to a friend.
     </li>
     <li ng-repeat="message in inbox.messages | filter:{ from: inbox.search }">
-      <div class="inbox__list-info">
-        <p class="inbox__list-from"> from: {{ message.from }} </p>
-        <p class="inbox__list-date"> {{ message.date | date: 'dd/MM/yyyy' }} </p>
-        <p class="inbox__list-subject"> {{ message.subject }} </p>
+      <div class="flow-text">
+        <h4 class=""> From: {{ message.from }} </h4>
+        <h5 class=""> {{ message.date | date: 'dd/MM/yyyy' }} </h5>
+        <h5 class=""> {{ message.subject }} </h5>
       </div>
-      <div class="inbox__list-actions">
-        <a href="" ng-click="inbox.goToMessage(message.id);">
+      <div class="">
+        <a href="" ng-click="inbox.goToMessage(message.id);" class="waves-effect waves-light btn">
           Read
         </a>
-        <a href="" ng-click="inbox.deleteMessage(id, $index);">
+        <a href="" ng-click="inbox.deleteMessage(id, $index);" class="waves-effect waves-light btn">
           Delete
         </a>
       </div>
